@@ -19,6 +19,7 @@ import os
 import re
 import zope.interface
 
+from zope.interface import implementer
 from topia.termextract import interfaces
 
 TERM_SPEC = re.compile('([^a-zA-Z]*)([a-zA-Z-\.]*[a-zA-Z])([^a-zA-Z]*[a-zA-Z]*)')
@@ -83,9 +84,9 @@ def normalizePluralForms(idx, tagged_term, tagged_terms, lexicon):
             tagged_term[2] = singular
             return
 
-
+@implementer(interfaces.ITagger)
 class Tagger(object):
-    zope.interface.implements(interfaces.ITagger)
+    # zope.interface.implements(interfaces.ITagger)
 
     rules = (
         correctDefaultNounTag,

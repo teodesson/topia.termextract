@@ -17,6 +17,7 @@ $Id: extract.py 100557 2009-05-30 15:48:36Z srichter $
 """
 import zope.interface
 
+from zope.interface import implementer
 from topia.termextract import interfaces, tag
 
 SEARCH = 0
@@ -40,8 +41,9 @@ def _add(term, norm, multiterm, terms):
     terms.setdefault(norm, 0)
     terms[norm] += 1
 
+@implementer(interfaces.ITermExtractor)
 class TermExtractor(object):
-    zope.interface.implements(interfaces.ITermExtractor)
+    # zope.interface.implements(interfaces.ITermExtractor)
 
     def __init__(self, tagger=None, filter=None):
         if tagger is None:
